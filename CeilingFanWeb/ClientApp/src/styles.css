@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #e01a76;
+}
+
+
+.err {
+  cursor: pointer;
+}
+
+.loading {
+  color: #0358ad;
+  font-size: 1.75em;
+  font-weight: bold;
+}
+
+
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+  border: 1px solid rgb(204, 12, 5);
+  background-color: rgb(255, 133, 133);
+}
+
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+
+.img-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

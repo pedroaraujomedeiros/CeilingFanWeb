@@ -1,0 +1,38 @@
+
+
+<div class="card-container" *ngIf="fans?.length ">
+
+  <table class="table table-hovered table-stripped" *ngIf="fans?.length">
+    <tr>
+      <th>Fan Name</th>
+      <th>Speed</th>
+      <th>Direction</th>
+      <th></th>
+    </tr>
+    <!--Loop currencies and show all properties-->
+    <tr *ngFor="let fan of fans">
+      <td scope="row">{{fan.Description}}</td>
+      <td scope="row">{{fan.Speed}}</td>
+      <td scope="row">{{fan.Direction == 0 ? "Forward" : "Reverse"}}</td>
+      <td scope="row">
+        <a [routerLink]="['/fan', fan.FanId]">
+          Access
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!--Loading fans busy indicator. Only show during loading-->
+<div style="text-align: center;padding-top: 10px;" *ngIf="loadingFans  ">
+  <img src='../../assets/images/loading2.svg' style="vertical-align:middle;" height='40px;' /><br /><span class="loading">Loading...</span>
+</div>
+
+<!--Message to users if no fans exist. Only show when not loading and there are no fans-->
+<div *ngIf="!fans?.length && !loadingFans ">No Fans</div>
+
+<!--only show when there are error in the messages property-->
+<!--ul of errors in messages array-->
+<ul class="alert alert-danger" *ngIf="messages?.length">
+  <li class="text-danger" *ngFor="let m of messages">{{m}}</li>
+</ul>

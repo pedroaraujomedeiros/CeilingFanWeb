@@ -1,0 +1,122 @@
+
+<ng-template [ngIf]="fan != null && fan?.FanId == 0" [ngIfElse]="fanCreated">
+  <h2 class="text-center">Hello, welcome to the Ceiling Fans Land</h2>
+
+  <div class="card-container">
+
+    <form *ngIf="!loadingFan" #fanForm="ngForm" (ngSubmit)="onFormSubmit(fanForm)">
+
+      <div class="form-group">
+        <label>Fan Name:</label><br />
+        <input name="description"
+               class="form-control {{ (description?.errors?.required || description?.errors?.minlength || description?.errors?.maxlength) && fanForm.submitted && !isValidFormSubmitted ? 'is-invalid' : '' }} "
+               [(ngModel)]="fan.Description"
+               required
+               #description="ngModel"
+               placeholder="Enter a name for your fan">
+
+        <div class="invalid-feedback" [innerHTML]="description?.errors?.required
+                  ? 'Fan Name is required'
+                  : description?.errors?.minlength
+                  ? 'Fan Name is required'
+                  : description?.errors?.maxlength
+                  ? 'Fan Name length is 3': ''">
+        </div>
+
+      </div>
+
+      <button type="submit" class="btn btn-primary">Power On your Fan!</button>
+      <img *ngIf="fanSaving" src='../../assets/images/loading.svg' height='20px;' />
+      <div *ngIf="saveMessage">
+        {{saveMessage}}
+      </div>
+    </form>
+    <!--only show when there are error in the messages property-->
+    <!--ul of errors in messages array-->
+    <ul class="alert alert-danger" *ngIf="messages && messages.length > 0">
+      <li class="text-danger" *ngFor="let m of messages">{{m}}</li>
+    </ul>
+
+  </div>
+</ng-template>
+
+<ng-template #fanCreated>
+
+  <div class="row mb-3">
+    <div class="col-12">
+      <h1 class="text-center ">Fan Name: {{fan.Description}}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <div class="row">
+        <div class="col-12"><h5 class="text-center">Speed Cord</h5></div>
+      </div>
+      <div class="row">
+        <div class="col d-flex align-items-end">Speed 0</div>
+        <div class="col" style="height:100px">
+          <img class="img-center" *ngIf="imgSpeed0_PullCord" src="../../assets/images/cordHandle.png" height="100" />
+          <img class="img-center" *ngIf="imgSpeed0_Cord" src="../../assets/images/cord.png" height="100" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col d-flex align-items-end">Speed 1</div>
+        <div class="col" style="height:100px">
+          <img class="img-center" *ngIf="imgSpeed1_PullCord" src="../../assets/images/cordHandle.png" height="100" />
+          <img class="img-center" *ngIf="imgSpeed1_Cord" src="../../assets/images/cord.png" height="100" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col d-flex align-items-end">Speed 2</div>
+        <div class="col" style="height:100px">
+          <img class="img-center" *ngIf="imgSpeed2_PullCord" src="../../assets/images/cordHandle.png" height="100" />
+          <img class="img-center" *ngIf="imgSpeed2_Cord" src="../../assets/images/cord.png" height="100" />
+        </div>
+      </div>
+      <div class="row d-flex align-items-end">
+        <div class="col">Speed 3</div>
+        <div class="col" style="height:100px">
+          <img class="img-center" *ngIf="imgSpeed3_PullCord" src="../../assets/images/cordHandle.png" height="100" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 px-4 pt-2"><button type="button" class="w-100 btn btn-primary" (click)="onPullSpeedCordClick()">Pull Cord</button></div>
+
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="row d-flex align-items-end">
+        <div class="col-12"><h5 class="text-center">Direction Cord</h5></div>
+      </div>
+      <div class="row d-flex align-items-end">
+        <div class="col">Forward</div>
+        <div class="col" style="height:100px">
+          <img class="img-center" *ngIf="imgDirectionForward_PullCord" src="../../assets/images/cordHandle.png" height="100" />
+          <img class="img-center" *ngIf="imgDirectionForward_Cord" src="../../assets/images/cord.png" height="100" />
+        </div>
+      </div>
+      <div class="row d-flex align-items-end">
+        <div class="col">Reverse</div>
+        <div class="col" style="height:100px">
+          <img class="img-center" *ngIf="imgDirectionReverse_PullCord" src="../../assets/images/cordHandle.png" height="100" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 px-4 pt-2"><button type="button" class="w-100 btn btn-primary" (click)="onPullDirectionCordClick()">Pull Cord</button></div>
+
+      </div>
+    </div>
+    <div class="col-6 d-flex flex-column">
+      <img src="../../assets/images/arrow-1{{ fan.Direction == 0 ? '' : '-reverse'}}.png" />
+      <img class="flex-grow-5" src="../../assets/images/{{ fan.Direction == 0 ? 'fan-forward' : 'fan-reverse'}}{{'-' + fan.Speed}}.gif"  />
+
+      <img src="../../assets/images/arrow-2{{ fan.Direction == 0 ? '' : '-reverse'}}.png"  />
+    </div>
+  </div>
+
+
+</ng-template>
+
+
+
+
