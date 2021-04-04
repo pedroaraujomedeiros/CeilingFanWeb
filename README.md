@@ -22,6 +22,7 @@ It is an app that contains a ceiling fan with 2 pull cords:
     * **Angular**
     * Consume API
     * HTML 5 & CSS3
+    * Bootstrap Framework
 
   * #### Deployment on Azure environment 
     * Application WEB
