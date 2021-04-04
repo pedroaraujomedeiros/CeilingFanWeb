@@ -1,5 +1,5 @@
 ﻿{
   "ConnectionStrings": {
-    "CeilingFanConnStr": "Data Source=localhost;Database=FanDB;integrated security= SSPI;"
+    "CeilingFanConnStr": "Server=tcp:ceilingfandbserver.database.windows.net,1433;Database=FanDB;User ID=pedromedeiros;Password=devops/#$\\%1@*;Encrypt=true;Connection Timeout=30;"
   }
 }
