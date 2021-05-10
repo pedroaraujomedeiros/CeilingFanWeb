@@ -1,5 +1,5 @@
 ﻿{
   "ConnectionStrings": {
-    "CeilingFanConnStr": "Server=tcp:ceilingfandbserver.database.windows.net,1433;Database=FanDB;User ID=pedromedeiros;Password=devops/#$\\%1@*;Encrypt=true;Connection Timeout=30;"
+    "CeilingFanConnStr": "Server=tcp:IP,1433;Database=DATABASE;User ID=pedromedeiros;Password=PASSWORD;Encrypt=true;Connection Timeout=30;"
   }
 }
